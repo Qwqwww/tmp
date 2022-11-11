@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import numpy as np
+import os
 import tensorflow as tf
 
 
@@ -7,7 +8,7 @@ app = Flask(__name__)
 
 
 def get_prediction(person):
-    model = tf.keras.models.load_model(r"models\titanic_mlp")
+    model = tf.keras.models.load_model(os.path.join("models", "titanic_mlp"))
     y_pred = model.predict(person)
 
     return f"Человек выжил с вероятностью {y_pred}"
